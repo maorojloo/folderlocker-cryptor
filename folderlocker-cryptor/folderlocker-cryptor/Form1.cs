@@ -67,5 +67,44 @@ namespace folderlocker_cryptor
         {
 
         }
+
+        private async void button2_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+
+                var filePath = textBox3.Text;
+                var password = textBox4.Text;
+                // برای آن که برنامه در هنگام عملیات رمزگشایی قفل نشود
+                //  متد زیر را با استفاده از Task فراخوانی می کنیم
+                await Task.Run(() => AesCryptography.DecryptFile(filePath, password));             
+                MessageBox.Show(@"Done");
+
+                if(radioButton3.Checked)
+                {
+                    try
+                    {
+                        var input =Path.GetFileName(textBox3.Text);
+                        var password_txt = textBox4.Text;
+                        var result = AesCryptography.DecryptText(input, password);
+                        FileInfo file = new FileInfo(textBox3.Text);
+                        file.Rename(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
