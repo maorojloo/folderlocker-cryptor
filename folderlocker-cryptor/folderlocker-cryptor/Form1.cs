@@ -32,13 +32,13 @@ namespace folderlocker_cryptor
 
                if(radioButton1.Checked)
                 {
-
-
-                    try
+                try
                     {
 
                         var input = Path.GetFileName(textBox1.Text);
                         var passwordname = textBox1.Text;
+                        MessageBox.Show(textBox1.Text);
+                        MessageBox.Show(input);
                         var result = AesCryptography.EncryptText(input, password);
 
                         FileInfo file = new FileInfo(textBox1.Text);
@@ -105,6 +105,13 @@ namespace folderlocker_cryptor
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cryptingMultiFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2();
+                f2.Show();
+            this.Hide();
         }
     }
 }
