@@ -95,7 +95,7 @@ namespace folderlocker_cryptor
                 {
                     MessageBox.Show(ex.Message);
                 }
-
+                Thread.Sleep(1000);
 
             }
         }
