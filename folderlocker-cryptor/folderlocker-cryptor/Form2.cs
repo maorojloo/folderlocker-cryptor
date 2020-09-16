@@ -98,6 +98,9 @@ namespace folderlocker_cryptor
                 Thread.Sleep(1000);
 
             }
+
+            MessageBox.Show("done");
+
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -119,6 +122,56 @@ namespace folderlocker_cryptor
         private void radioButton1_MouseCaptureChanged(object sender, EventArgs e)
         {
         
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked) { radioButton3.Checked = false; MessageBox.Show("file name cyptoing option is not avavle yet"); }
+            foreach (string file in GetFiles(textBox3.Text))
+            {
+
+                try
+                {
+
+                    var filePath = file;
+                    var password = textBox4.Text;
+                    // برای آن که برنامه در هنگام عملیات رمزگذاری قفل نشود
+                    //  متد زیر را با استفاده از Task فراخوانی می کنیم
+                    await Task.Run(() => AesCryptography.DecryptFile(filePath, password));
+
+                    if (radioButton1.Checked)
+                    {
+                        try
+                        {
+                            //   MessageBox.Show(file);
+                            string input = Path.GetFileName(file);
+                            // MessageBox.Show(input);
+                            var passwordname = textBox4.Text;
+                            var result = AesCryptography.EncryptText(input, passwordname);
+                            Thread.Sleep(2000);
+                            FileInfo fileinf = new FileInfo(file);
+                            fileinf.Rename(result);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+
+
+
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Thread.Sleep(1000);
+                MessageBox.Show("done");
+            }
         }
     }
 }

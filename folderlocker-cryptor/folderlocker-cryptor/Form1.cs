@@ -113,5 +113,10 @@ namespace folderlocker_cryptor
                 f2.Show();
             this.Hide();
         }
+
+        private void scoreCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/maorojloo/folderlocker-cryptor.git");
+        }
     }
 }

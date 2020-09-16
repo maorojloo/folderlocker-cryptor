@@ -201,6 +201,7 @@
             this.scoreCodeToolStripMenuItem.Name = "scoreCodeToolStripMenuItem";
             this.scoreCodeToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.scoreCodeToolStripMenuItem.Text = "score code";
+            this.scoreCodeToolStripMenuItem.Click += new System.EventHandler(this.scoreCodeToolStripMenuItem_Click);
             // 
             // Form1
             // 
